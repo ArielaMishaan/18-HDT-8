@@ -38,10 +38,12 @@ public class CPU {
         }
     }
 
-    public String indicarPriopirad(){
+    public String indicarPrioridad(){
+
         String resultado = "\n Prioridad de los procesos:";
+        
         for (int i = 0; i < procesos.count(); i++) {
-            Proceso procesoTemporal = procesos.get();
+            Proceso procesoTemporal = procesos.remove();
             resultado = resultado + procesoTemporal.toString();
         }
         return resultado;

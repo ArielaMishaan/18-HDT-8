@@ -139,10 +139,10 @@ public class Proceso {
     @Override
     public String toString() {
         return 
-            "\n\nnombre:'" + getNombre() + 
-            "\nusuario:'" + getUsuario() +
-            "\nnice:'" + getNice() +
-            "\nPR:" + getPr();
+            "\n\nnombre: " + getNombre() + 
+            "\nusuario: " + getUsuario() +
+            "\nnice: " + getNice() +
+            "\nPR: " + getPr();
     }
 
     
