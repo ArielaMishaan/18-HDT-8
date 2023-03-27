@@ -1,8 +1,12 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 
-/**
- * 
+/*
+ * Alina Carías (22539) y Ariela Mishaan (22052)
+ * Algoritmos y Estructuras de Datos Sección 40
+ * Hoja de Trabajo 8
+ * 27-03-2023
+ * Clase Heap using Binary Tree: tomada del repositorio.
  */
 
 /**
