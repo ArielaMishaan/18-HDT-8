@@ -8,7 +8,7 @@ import java.util.Objects;
  * Clase proceso: guarda cada uno de los procesos.
  */
 
-public class Proceso {
+public class Proceso implements Comparable{
 
     //Atributos
     private String nombre;
@@ -17,7 +17,7 @@ public class Proceso {
     private int pr;
 
 
-    //constructor sin parametros
+    //constructor sin parámetros
     public Proceso() {
         nombre = "";
         usuario = "";
@@ -25,7 +25,7 @@ public class Proceso {
         pr = 0;
     }
 
-    //constructor con parametros
+    //constructor con parámetros
     public Proceso(String nombre, String usuario, int nice, int pr) {
         this.nombre = nombre;
         this.usuario = usuario;
@@ -109,21 +109,41 @@ public class Proceso {
         return this;
     }
 
+    /**
+     * 
+     * @param usuario
+     * @return
+     */
     public Proceso usuario(String usuario) {
         setUsuario(usuario);
         return this;
     }
 
+    /**
+     * 
+     * @param nice
+     * @return
+     */
     public Proceso nice(int nice) {
         setNice(nice);
         return this;
     }
 
+    /**
+     * 
+     * @param pr
+     * @return
+     */
     public Proceso pr(int pr) {
         setPr(pr);
         return this;
     }
 
+    
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -136,6 +156,11 @@ public class Proceso {
     }
 
 
+
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return 
@@ -145,5 +170,27 @@ public class Proceso {
             "\nPR: " + getPr();
     }
 
+
+    
+    /** 
+     * @param o
+     * @return int
+     * comparador de procesos
+     */
+    @Override
+    public int compareTo(Object o) {
+        int resultado = 0;
+
+        if(this.getPr() == ((Proceso) o).getPr()){
+            resultado = 0;
+        }
+        else if(this.getPr() > ((Proceso) o).getPr()){
+            resultado = 1;
+        }
+        else{
+            resultado = -1;
+        }
+        return resultado; 
+    }
     
 }

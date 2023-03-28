@@ -14,19 +14,19 @@ import org.junit.jupiter.api.Test;
 class CPUTest {
 
 	@Test
-	void HeapTest() {
-		HeapUsingIterativeBinaryTree<Integer, String> myHeap = new HeapUsingIterativeBinaryTree<Integer, String>(new ComparadorNumeros<Integer>());
-		myHeap.Insert(20, "veinte");
-		myHeap.Insert(10, "diez");
-		myHeap.Insert(15, "quince");
-		myHeap.Insert(5, "cinco");
-		myHeap.Insert(10, "diez");
+	void VectorHeapTestRemoveAdd() {
+		VectorHeap<Integer> myHeap = new VectorHeap<Integer>();
+		myHeap.add(20);
+		myHeap.add(10);
+		myHeap.add(15);
+		myHeap.add(5);
+		myHeap.add(10);
 		
-		assertEquals("cinco", myHeap.remove());
-		assertEquals("diez", myHeap.remove());
-		assertEquals("diez", myHeap.remove());
-		assertEquals("quince", myHeap.remove());
-		assertEquals("veinte", myHeap.remove());
+		assertEquals(5, myHeap.remove());
+		assertEquals(10, myHeap.remove());
+		assertEquals(10, myHeap.remove());
+		assertEquals(15, myHeap.remove());
+		assertEquals(20, myHeap.remove());
 	}
 
 	@Test
@@ -40,7 +40,8 @@ class CPUTest {
 		lineas.add("cat,juan02,5");
 
 		cpu.abrirArchivo(lineas);
-		assertEquals(false, cpu.getProcesos().isEmpty());
+		assertEquals(false, cpu.getProcesosVectorHeap().isEmpty());
+		assertEquals(false, cpu.getProcesosPQ().isEmpty());
 	}
 
 	@Test
@@ -55,7 +56,8 @@ class CPUTest {
 
 		cpu.abrirArchivo(lineas);
 
-		String resultado = "\n Prioridad de los procesos:" + "\n\nnombre: ls\nusuario: maria30\nnice: -20\nPR: 100\n\nnombre: vi\nusuario: juan02\nnice: 0\nPR: 120\n\nnombre: firefox\nusuario: rosa20\nnice: 5\nPR: 125\n\nnombre: cat\nusuario: juan02\nnice: 5\nPR: 125";
+		String resultado = "\nPrioridad de los procesos con un VectorHeap:" + "\n\nnombre: ls\nusuario: maria30\nnice: -20\nPR: 100\n\nnombre: vi\nusuario: juan03\nnice: 0\nPR: 120\n\nnombre: firefox\nusuario: rosa20\nnice: 5\nPR: 125\n\nnombre: cat\nusuario: juan02\nnice: 5\nPR: 125\n" ;
+		resultado = resultado + "\nPrioridad de los procesos con el Priority Queue de JCF:\n\nnombre: ls\nusuario: maria30\nnice: -20\nPR: 100\n\nnombre: vi\nusuario: juan03\nnice: 0\nPR: 120\n\nnombre: firefox\nusuario: rosa20\nnice: 5\nPR: 125\n\nnombre: cat\nusuario: juan02\nnice: 5\nPR: 125\n";
 		assertEquals(resultado, cpu.indicarPrioridad());
 	}
 

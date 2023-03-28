@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /*
  * Alina Carías (22539) y Ariela Mishaan (22052)
@@ -17,7 +16,11 @@ public class Principal {
         ArrayList<String> lineasPalabras = palabras.leerArchivo();
 
         CPU cpu = new CPU();
-        System.out.println("hola");
+
+        System.out.println("\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°");
+        System.out.println("CPU para sistema operativo Linux");
+        System.out.println("\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°");
+
         try {
             cpu.abrirArchivo(lineasPalabras);
             System.out.println(cpu.indicarPrioridad());

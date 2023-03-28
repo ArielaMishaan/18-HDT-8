@@ -5,6 +5,7 @@
  * 27-03-2023
  * Clase Archivo: escribe y lee un archivo nuevo.
  */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,6 +17,10 @@ public class Archivo {
     
     private File archivo;
 
+    /**
+     * Consstructor de esta clase
+     * @param nombreArchivo
+     */
     public Archivo (String nombreArchivo){
         archivo = new File(nombreArchivo);
         try {
@@ -29,6 +34,7 @@ public class Archivo {
     
     /** 
      * @param linea
+     * Escribe un archivo nuevo con un String
      */
     public void escribirArchivo(String linea){
         try {
@@ -44,6 +50,7 @@ public class Archivo {
     
     /** 
      * @param linea
+     * Con un String escribe un archivo
      */
     public void escribirArchivo2(String linea){
         try {
@@ -59,6 +66,7 @@ public class Archivo {
     
     /** 
      * @return ArrayList<String>
+     * Lee el archivo y guarda las líneas en un array list
      */
     public ArrayList<String> leerArchivo(){
         Scanner miLector;
@@ -78,6 +86,7 @@ public class Archivo {
     
     /** 
      * @return String
+     * lee el archivo y guarda las líneas en un string
      */
     public String leerArchivoString(){
         String texto = "";
@@ -93,6 +102,7 @@ public class Archivo {
         return texto;
     }
 
+    
     public void eliminarArchivo(){
         archivo.delete();
     }

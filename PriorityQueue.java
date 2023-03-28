@@ -1,26 +1,21 @@
-
 /*
  * Alina Carías (22539) y Ariela Mishaan (22052)
  * Algoritmos y Estructuras de Datos Sección 40
  * Hoja de Trabajo 8
  * 27-03-2023
- * Interfaz IHeap. Tomada del repositorio.
+ * Interfaz PriorityQueue, tomada del repositorio de la clase.
  */
 
-/**
- * @author moises.alonso
- *
- */
-public interface IHeap<P, V> {
 
-	void Insert(P priority, V value);
+public interface PriorityQueue<T> {
+    
+    void add(T t);
 	
-	V get();
+	T getFirst();
 	
-	V remove();
+	T remove();
 	
 	int count();
 	
 	boolean isEmpty();
-	
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 /*
  * Alina Carías (22539) y Ariela Mishaan (22052)
@@ -9,20 +10,27 @@ import java.util.ArrayList;
  */
 
 public class CPU {
-    private HeapUsingIterativeBinaryTree<Integer, Proceso> procesos;
-    private ComparadorNumeros comparadorNumeros;
+    private VectorHeap procesosVectorHeap;
+    private PriorityQueue procesosPQ;
 
 
+    
     public CPU() {
-        this.comparadorNumeros = new ComparadorNumeros<>();
-        this.procesos = new HeapUsingIterativeBinaryTree<Integer, Proceso>(comparadorNumeros);
+        this.procesosVectorHeap = new VectorHeap<Proceso>();
+        this.procesosPQ = new PriorityQueue<Proceso>();
     }
 
-    public CPU(HeapUsingIterativeBinaryTree<Integer,Proceso> procesos, ComparadorNumeros comparadorNumeros) {
-        this.procesos = procesos;
-        this.comparadorNumeros = comparadorNumeros;
+    public CPU(VectorHeap<Proceso> procesosVectorHeap, PriorityQueue procesosPQ) {
+        this.procesosVectorHeap = procesosVectorHeap;
+        this.procesosPQ = procesosPQ;
     }
 
+    
+    /** 
+     * @param lineas
+     * @throws Exception
+     * Abre el archivo con la información y la guarda tanto en el heap implementado con vector, como en el implementado con Priority Queue de Java Collection Frameworks
+     */
     public void abrirArchivo(ArrayList<String> lineas) throws Exception{
         for (String linea : lineas) {
             
@@ -33,56 +41,65 @@ public class CPU {
             int nice = Integer.valueOf(zapato[2]);
             int pr = 20 + nice + 100;
             Proceso proceso = new Proceso(nombre, usuario, nice, pr);
-
-            procesos.Insert(pr, proceso);
+            
+            procesosVectorHeap.add(proceso);
+            procesosPQ.add(proceso);
         }
     }
 
+    /**
+     * Ordena la información de los heaps (tanto el implementado con un vector como el implementado con la Priority Queue de Java Collection Frameworks)
+     * @return String resultado con la información en el orden que se necesita
+     */
     public String indicarPrioridad(){
+        String resultado = "\nPrioridad de los procesos con un VectorHeap:";
 
-        String resultado = "\n Prioridad de los procesos:";
-        
-        for (int i = 0; i < procesos.count(); i++) {
-            Proceso procesoTemporal = procesos.remove();
-            resultado = resultado + procesoTemporal.toString();
+        int cuenta = procesosVectorHeap.count();
+
+        for (int i = 0; i < cuenta; i++) {
+            resultado = resultado + procesosVectorHeap.remove().toString();
         }
-        return resultado;
+
+        resultado = resultado + "\n\nPrioridad de los procesos con el Priority Queue de JCF:";
+
+        for (int i = 0; i < cuenta; i++) {
+            resultado = resultado + procesosPQ.remove().toString();
+        }
+
+        return resultado + "\n";
     }
 
 
-    public HeapUsingIterativeBinaryTree<Integer,Proceso> getProcesos() {
-        return this.procesos;
+    /**
+     * Getter del heap implementado con vector
+     * @return el heap implementado con vector
+     */
+    public VectorHeap getProcesosVectorHeap() {
+        return this.procesosVectorHeap;
     }
 
-    public void setProcesos(HeapUsingIterativeBinaryTree<Integer,Proceso> procesos) {
-        this.procesos = procesos;
+    /**
+     * Setter de heap implementado con vector
+     * @param procesosVectorHeap
+     */
+    public void setProcesosVectorHeap(VectorHeap procesosVectorHeap) {
+        this.procesosVectorHeap = procesosVectorHeap;
     }
 
-    public ComparadorNumeros getComparadorNumeros() {
-        return this.comparadorNumeros;
+    /**
+     * Getter de heap implementado con priority queue de java collection frameworks
+     * @return heap implementado con priority queue de java collection frameworks
+     */
+    public PriorityQueue getProcesosPQ() {
+        return this.procesosPQ;
     }
 
-    public void setComparadorNumeros(ComparadorNumeros comparadorNumeros) {
-        this.comparadorNumeros = comparadorNumeros;
-    }
-
-    public CPU procesos(HeapUsingIterativeBinaryTree<Integer,Proceso> procesos) {
-        setProcesos(procesos);
-        return this;
-    }
-
-    public CPU comparadorNumeros(ComparadorNumeros comparadorNumeros) {
-        setComparadorNumeros(comparadorNumeros);
-        return this;
-    }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-            " procesos='" + getProcesos() + "'" +
-            ", comparadorNumeros='" + getComparadorNumeros() + "'" +
-            "}";
+    /**
+     * Setter de heap implementado con priority queue de Java collection frameworks
+     * @param procesosPQ
+     */
+    public void setProcesosPQ(PriorityQueue procesosPQ) {
+        this.procesosPQ = procesosPQ;
     }
 
 
